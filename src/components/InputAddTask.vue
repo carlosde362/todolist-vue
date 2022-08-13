@@ -35,6 +35,9 @@ export default defineComponent({
   methods: {
     emitNewTask(event: Event) {
       event.preventDefault();
+      if (!this.newTask || this.newTask.trim().length === 0) {
+        return;
+      }
       this.$emit('add:task', this.newTask);
       this.newTask = '';
     },
