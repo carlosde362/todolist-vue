@@ -14,7 +14,7 @@
       />
       <button
         type="submit"
-        class="rounded h-max outline outline-transparent outline-2 outline-offset-4 bg-green-700 p-2 px-4 transition delay-100 hover:bg-green-600 hover:outline-green-700"
+        class="rounded h-max outline outline-transparent outline-2 outline-offset-2 bg-green-700 p-2 px-4 transition delay-100 hover:bg-green-600 hover:outline-green-700"
       >
         Añadir
       </button>
