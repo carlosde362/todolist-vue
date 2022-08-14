@@ -1,5 +1,5 @@
 enum KeysLocalStorage {
-  tasks = 'tasks',
+  TASKS = 'tasks',
 }
 
 export default KeysLocalStorage;
