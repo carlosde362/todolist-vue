@@ -15,7 +15,7 @@ const useStoreTasks = defineStore('tasks', {
       const newTask = new Task();
       newTask.content = contentNewTask;
       setLocalStorage(KeysLocalStorage.tasks, [...this.tasks, newTask]);
-      this.tasks = [...this.tasks, newTask];
+      this.tasks = [...this.tasks, newTask] as Task[];
     },
   },
   getters: {
