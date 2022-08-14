@@ -9,7 +9,7 @@
         required
         wrap="hard"
         placeholder="Añade un tarea"
-        class="block resize-none h-max w-full p-4 font-system transition transition-delay-100 rounded opacity-70 focus:opacity-100 placeholder:text-white"
+        class="block resize-none h-max w-full p-4 transition transition-delay-100 rounded opacity-70 focus:opacity-100 placeholder:text-white"
         v-model="newTask"
       />
       <button
