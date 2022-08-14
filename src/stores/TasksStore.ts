@@ -7,20 +7,24 @@ import { reactive } from 'vue';
 const useStoreTasks = defineStore('tasks', {
   state: () => {
     return {
-      tasks: reactive(getLocalStorage(KeysLocalStorage.tasks) ?? []),
+      tasks: reactive(getLocalStorage(KeysLocalStorage.TASKS) ?? []),
     };
   },
   actions: {
     addTask(contentNewTask: string) {
       const newTask = new Task();
       newTask.content = contentNewTask;
-      setLocalStorage(KeysLocalStorage.tasks, [...this.tasks, newTask]);
+      setLocalStorage(KeysLocalStorage.TASKS, [...this.tasks, newTask]);
       this.tasks = [...this.tasks, newTask] as Task[];
     },
   },
   getters: {
     getTasks(): Task[] {
-      return this.tasks;
+      return this.tasks.filter((task: Task) => !task.isRemove);
+    },
+
+    getTasksRemove(): Task[] {
+      return this.tasks.filter((task: Task) => task.isRemove);
     },
   },
 });
