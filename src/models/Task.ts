@@ -1,8 +1,9 @@
 export default class Task {
   content: string;
-  isRemove: boolean;
+  isRemove: boolean = false;
+  isComplete: boolean = false;
 
-  constructor() {
-    this.isRemove = false;
+  constructor(content: string) {
+    this.content = content;
   }
 }
