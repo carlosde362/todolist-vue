@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import InputAddTask from './components/InputAddTask.vue';
+import Tasks from './components/Tasks.vue';
+import useStorateTasks from './stores/TasksStore';
+import Welcome from './components/Welcome.vue';
+
+const storeTasks = useStorateTasks();
 
 const newTask = (newTask: string) => {
-  console.log(newTask);
+  storeTasks.addTask(newTask);
 };
 </script>
 
@@ -12,7 +17,9 @@ const newTask = (newTask: string) => {
       <h1 class="w-full text-center text-3xl md:text-5xl lg:text-5xl">
         Todo list
       </h1>
+      <Welcome />
       <InputAddTask @add:task="newTask($event)" />
+      <Tasks />
     </div>
   </main>
 </template>
