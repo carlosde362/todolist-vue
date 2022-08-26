@@ -1,8 +1,9 @@
 <template>
   <div class="w-full bg-stone-700 rounded p-4">
-    <div v-if="!isEditTask" class="flex flex-row justify-between">
+    <div class="flex flex-row justify-between">
       <template class="flex flex-row gap-2 items-center">
         <CheckTask
+          v-if="!isRemoveTask"
           :checked="task?.isComplete"
           @toogleCheckTask="markAsComplete()"
         />
@@ -27,6 +28,12 @@
       </button>
     </div>
   </div>
+  <InputEditTask
+    v-if="isEditTask"
+    @closeDialog="isEditTask = false"
+    @updateContentTask="updateTask($event)"
+    :contentTask="task.content"
+  />
 </template>
 
 <script lang="ts">
@@ -34,6 +41,7 @@ import { defineComponent } from 'vue';
 import Task from '../models/Task';
 import CheckTask from './CheckTask.vue';
 import useStoreTasks from '../stores/TasksStore';
+import InputEditTask from './InputEditTask.vue';
 
 export default defineComponent({
   name: 'Task',
@@ -83,9 +91,14 @@ export default defineComponent({
     restoreTask() {
       this.storeTasks.restoreTask(this.idTask);
     },
+    updateTask(value: string) {
+      this.isEditTask = false;
+      this.task.content = value;
+      this.storeTasks.updateContentTask(this.idTask, value);
+    },
   },
-  components: { CheckTask },
+  components: { CheckTask, InputEditTask },
 });
 </script>
 
-<style scooped></style>
+<style scoped></style>
