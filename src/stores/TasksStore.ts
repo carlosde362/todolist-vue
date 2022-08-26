@@ -44,6 +44,11 @@ const useStoreTasks = defineStore('tasks', {
       this.tasks[id].isComplete = !this.tasks[id].isComplete;
       this.updateLocalStorage(this.tasks);
     },
+
+    updateContentTask(id: number, newContent: string) {
+      this.tasks[id].content = newContent;
+      this.updateLocalStorage(this.tasks);
+    },
   },
   getters: {
     getTasks(): Task[] {
