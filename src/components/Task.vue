@@ -7,7 +7,7 @@
           :checked="task?.isComplete"
           @toogleCheckTask="markAsComplete()"
         />
-        <p>{{ task?.content }}</p>
+        <p :class="{ 'line-through': task?.isComplete }">{{ task?.content }}</p>
       </template>
       <div class="flex flex-row gap-2" v-if="!isRemoveTask">
         <button
