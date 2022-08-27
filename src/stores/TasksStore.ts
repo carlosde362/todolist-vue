@@ -20,8 +20,7 @@ const useStoreTasks = defineStore('tasks', {
       this.tasks = [...this.tasks, newTask] as Task[];
     },
     removeTask(id: number) {
-      console.log(`remove ${id}`);
-      if (this.tasks.length === 0 || !this.tasks[id]) {
+      if (!this.tasks[id]) {
         return;
       }
 
@@ -29,7 +28,7 @@ const useStoreTasks = defineStore('tasks', {
       this.updateLocalStorage(this.tasks);
     },
     restoreTask(id: number) {
-      if (this.tasks.length === 0 || !this.tasks[id]) {
+      if (!this.tasks[id]) {
         return;
       }
 
