@@ -11,7 +11,6 @@ const useStoreNameUser = defineStore('nameUser', {
 
   actions: {
     setNameUser(nameUser: string) {
-      console.log(nameUser);
       this.nameUser = nameUser;
       setLocalStorage(KeysLocalStorage.USER_NAME, nameUser.trim());
     },
