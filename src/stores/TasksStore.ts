@@ -33,6 +33,7 @@ const useStoreTasks = defineStore('tasks', {
       }
 
       this.tasks[id].isRemove = false;
+      this.tasks[id].isComplete = false;
       this.updateLocalStorage(this.tasks);
     },
     TooglemarkAsComplete(id: number) {
