@@ -19,12 +19,23 @@ const useStoreTasks = defineStore('tasks', {
       this.updateLocalStorage([...this.tasks, newTask]);
       this.tasks = [...this.tasks, newTask] as Task[];
     },
-    removeTask(id: number) {
+    taskToRecyclen(id: number) {
       if (!this.tasks[id]) {
+        console.log('return');
         return;
       }
 
       this.tasks[id].isRemove = true;
+      this.updateLocalStorage(this.tasks);
+    },
+    removeTask(id: number) {
+      console.log(id);
+      if (!this.tasks[id]) {
+        console.log('return');
+        return;
+      }
+
+      this.tasks.splice(id, 1);
       this.updateLocalStorage(this.tasks);
     },
     restoreTask(id: number) {
