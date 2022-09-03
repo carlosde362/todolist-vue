@@ -21,7 +21,6 @@ const useStoreTasks = defineStore('tasks', {
     },
     taskToRecyclen(id: number) {
       if (!this.tasks[id]) {
-        console.log('return');
         return;
       }
 
@@ -29,9 +28,7 @@ const useStoreTasks = defineStore('tasks', {
       this.updateLocalStorage(this.tasks);
     },
     removeTask(id: number) {
-      console.log(id);
       if (!this.tasks[id]) {
-        console.log('return');
         return;
       }
 
