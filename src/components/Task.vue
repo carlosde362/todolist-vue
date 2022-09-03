@@ -11,23 +11,32 @@
           {{ task?.content }}
         </p>
       </template>
-      <div class="flex flex-row gap-2" v-if="!isRemoveTask">
-        <button
-          :class="`p-2 rounded-full bg-stone-800 w-8 h-8 flex items-center justify-center shadow-lg ${button.extraClassButton}`"
-          v-for="(button, index) in buttons"
-          :key="index"
-          @click="button.onClick()"
-        >
-          <i :class="`${button.icon}`"></i>
-        </button>
+      <div class="flex flex-row gap-2">
+        <template v-if="!isRemoveTask">
+          <template v-for="button in buttons">
+            <ButtonActionsTask
+              @event:click="button.onClick()"
+              :extraClass="button.extraClassButton"
+            >
+              <i :class="`${button.icon}`"></i>
+            </ButtonActionsTask>
+          </template>
+        </template>
+        <template v-else>
+          <template v-for="button in buttonsTaskRemove">
+            <ButtonActionsTask
+              @event:click="button.onClick()"
+              :useTooltip="button.useTooltip"
+              :messageTooltip="
+                button.messageTooltip ? button.messageTooltip : undefined
+              "
+              :extraClass="button.extraClassButton"
+            >
+              <i :class="`${button.icon}`"></i>
+            </ButtonActionsTask>
+          </template>
+        </template>
       </div>
-      <button
-        v-if="isRemoveTask"
-        @click="restoreTask()"
-        class="p-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg bg-slate-600"
-      >
-        <i class="ri-restart-line"></i>
-      </button>
     </div>
   </div>
   <InputEditTask
@@ -44,6 +53,7 @@ import Task from '../models/Task';
 import CheckTask from './CheckTask.vue';
 import useStoreTasks from '../stores/TasksStore';
 import InputEditTask from './InputEditTask.vue';
+import ButtonActionsTask from './ButtonActionsTask.vue';
 
 export default defineComponent({
   name: 'Task',
@@ -64,6 +74,7 @@ export default defineComponent({
   data() {
     return {
       isEditTask: false,
+      showTooltip: false,
       editTask: this.task,
       storeTasks: useStoreTasks(),
       buttons: [
@@ -75,7 +86,23 @@ export default defineComponent({
         {
           extraClassButton: 'bg-red-600',
           icon: 'ri-delete-bin-line',
+          onClick: this.sendTaskToRecyclen,
+        },
+      ],
+      buttonsTaskRemove: [
+        {
+          extraClassButton: 'bg-slate-600',
+          icon: 'ri-restart-line',
+          onClick: this.restoreTask,
+          useTooltip: true,
+          messageTooltip: 'Restaura la tarea',
+        },
+        {
+          extraClassButton: 'bg-red-600',
+          icon: 'ri-close-circle-fill',
           onClick: this.removeTask,
+          useTooltip: true,
+          messageTooltip: 'Elimina la tarea',
         },
       ],
     };
@@ -87,8 +114,8 @@ export default defineComponent({
     markAsComplete() {
       this.storeTasks.TooglemarkAsComplete(this.idTask);
     },
-    removeTask() {
-      this.storeTasks.removeTask(this.idTask);
+    sendTaskToRecyclen() {
+      this.storeTasks.taskToRecyclen(this.idTask);
     },
     restoreTask() {
       this.storeTasks.restoreTask(this.idTask);
@@ -98,8 +125,11 @@ export default defineComponent({
       this.task.content = value;
       this.storeTasks.updateContentTask(this.idTask, value);
     },
+    removeTask() {
+      this.storeTasks.removeTask(this.idTask);
+    },
   },
-  components: { CheckTask, InputEditTask },
+  components: { CheckTask, InputEditTask, ButtonActionsTask },
 });
 </script>
 
