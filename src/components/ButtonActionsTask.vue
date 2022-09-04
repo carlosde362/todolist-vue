@@ -1,8 +1,8 @@
 <template>
   <button
     ref="btnRef"
-    @mouseenter="toogleTooltip()"
-    @mouseleave="toogleTooltip()"
+    @mouseenter="toggleTooltip()"
+    @mouseleave="toggleTooltip()"
     @click="emitClick()"
     :class="`p-2 rounded-full bg-stone-800 w-8 h-8 flex items-center justify-center shadow-lg cursor-pointer ${extraClass}`"
   >
@@ -48,7 +48,7 @@ export default defineComponent({
     emitClick() {
       this.$emit('event:click');
     },
-    toogleTooltip() {
+    toggleTooltip() {
       if (!this.useTooltip) {
         return;
       }
