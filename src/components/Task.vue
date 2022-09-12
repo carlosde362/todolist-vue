@@ -13,19 +13,20 @@
       </template>
       <div class="flex flex-row gap-2">
         <template v-if="!isRemoveTask">
-          <template v-for="button in buttons">
             <ButtonActionsTask
+            v-for="(button, index) in buttons"
               @event:click="button.onClick()"
               :extraClass="button.extraClassButton"
+              :key="index"
             >
               <i :class="`${button.icon}`"></i>
             </ButtonActionsTask>
-          </template>
         </template>
         <template v-else>
-          <template v-for="button in buttonsTaskRemove">
             <ButtonActionsTask
+            v-for="(button, index) in buttonsTaskRemove"
               @event:click="button.onClick()"
+              :key="index"
               :useTooltip="button.useTooltip"
               :messageTooltip="
                 button.messageTooltip ? button.messageTooltip : undefined
@@ -34,7 +35,6 @@
             >
               <i :class="`${button.icon}`"></i>
             </ButtonActionsTask>
-          </template>
         </template>
       </div>
     </div>
