@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  todolist:
+    build:
+      context: .
+    image: todolist-localstorage:1.00
+    container_name: todolist
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+
