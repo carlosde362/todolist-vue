@@ -2,8 +2,9 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'prettier', 'plugin:vue/base'],
   parserOptions: {
+    parser: "@typescript-eslint/parser",
     ecmaVersion: 2020,
   },
   rules: {
