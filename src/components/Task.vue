@@ -39,12 +39,13 @@
       </div>
     </div>
   </div>
-  <InputEditTask
-    v-if="isEditTask"
-    @closeDialog="isEditTask = false"
-    @updateContentTask="updateTask($event)"
-    :contentTask="task.content"
-  />
+  <ModalComponent v-if="isEditTask">
+    <InputEditTask
+      @closeDialog="isEditTask = false"
+      @updateContentTask="updateTask($event)"
+      :contentTask="task.content"
+    />
+  </ModalComponent>
 </template>
 
 <script lang="ts">
@@ -54,12 +55,13 @@ import CheckTask from './CheckTask.vue';
 import useStoreTasks from '../stores/TasksStore';
 import InputEditTask from './InputEditTask.vue';
 import ButtonActionsTask from './ButtonActionsTask.vue';
+import ModalComponent from "./Modal.vue";
 
 export default defineComponent({
   name: 'Task',
   props: {
     task: {
-      type: Object,
+      type: Task,
       required: true,
     },
     idTask: {
@@ -129,7 +131,7 @@ export default defineComponent({
       this.storeTasks.removeTask(this.idTask);
     },
   },
-  components: { CheckTask, InputEditTask, ButtonActionsTask },
+  components: { ModalComponent, CheckTask, InputEditTask, ButtonActionsTask },
 });
 </script>
 
