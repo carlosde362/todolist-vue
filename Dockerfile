@@ -1,4 +1,4 @@
-FROM node:16-alpine3.15 AS builder
+FROM node:18.15.0-alpine3.17@sha256:19eaf41f3b8c2ac2f609ac8103f9246a6a6d46716cdbe49103fdb116e55ff0cc AS builder
 
 WORKDIR /app
 
