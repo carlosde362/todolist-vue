@@ -1,0 +1,10 @@
+.eslintrc.cjs
+.gitignore
+.idea
+.vscode
+.netlify
+README.md
+miscelania
+docker-compose.yml
+docker-compose.dev.yml
+Dockerfile
