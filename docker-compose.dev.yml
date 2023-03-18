@@ -8,4 +8,6 @@ services:
     ports:
       - "5173:5173"
     container_name: todolist_dev
-    command: npm run dev-docker
+    command: >
+      sh -c "npm i &&
+             npm run dev-docker"
