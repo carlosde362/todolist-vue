@@ -1,6 +1,6 @@
 <template>
   <div class="w-full bg-stone-700 rounded p-4 max-w-full">
-    <div class="flex flex-row w-full max-w-full justify-between">
+    <div class="flex flex-row w-full max-w-full justify-between items-center gap-2">
       <template class="flex flex-row gap-2 items-center">
         <CheckTask
           v-if="!isRemoveTask"
